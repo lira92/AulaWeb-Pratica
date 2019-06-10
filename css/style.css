@@ -112,3 +112,98 @@ progress[value]::-moz-progress-bar {
     background-color: #fff;
     border-radius: 10px;
 }
+
+#conteudo {
+    display: flex;
+    justify-content: center;
+    padding: 10px 50px;
+}
+
+#conteudo .coluna-conteudo {
+    flex: 1;
+}
+
+#conteudo .coluna-conteudo:first-child {
+    margin-right: 50px;
+}
+
+.tabela-transacoes {
+    width: 100%;
+}
+
+.tabela-transacoes td {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    color: #4b4b4d;
+    font-weight: bold;
+}
+
+.tabela-transacoes td.coluna-descricao-transacao {
+    padding-left: 30px;
+}
+
+.tabela-transacoes td.coluna-descricao-transacao p {
+    font-size: 0.7em;
+    opacity: 0.8;
+    margin-top: 3px;
+}
+
+.tabela-transacoes td.coluna-valor-transacao {
+    text-align: right;
+}
+
+.tabela-transacoes td.coluna-data {
+    border: 0;
+    padding-bottom: 0;
+}
+
+#receitas .tabela-transacoes td.coluna-valor-transacao {
+    color: #4ab24a;
+}
+
+#despesas .tabela-transacoes td.coluna-valor-transacao {
+    color: #d01f1f;
+}
+
+.form-container {
+    margin-top: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.form-container .titulo-form {
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+}
+
+.form .linha-form:not(:last-child) {
+    margin-right: 15px;
+}
+
+.linha-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.linha-form label {
+    margin-bottom: 2px;
+}
+
+.linha-form label, .linha-form select {
+    font-size: 0.9em;
+}
+
+.linha-form button {
+    background-color: #2178e3;
+    border: 0;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+

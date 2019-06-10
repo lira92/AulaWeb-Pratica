@@ -78,89 +78,108 @@
             </div>
         </div>
         <div id="conteudo">
-            <div id="despesas">
+            <div class="coluna-conteudo" id="despesas">
                 <h3>Despesas</h3>
-                <table>
+                <table class="tabela-transacoes">
                     <tr>
-                        <td>26/05</td>
-                        <td>
+                        <td class="coluna-data" colspan="2">26/05</td>
+                    </tr>
+                    <tr>
+                        <td class="coluna-descricao-transacao">
                             Aluguel
-                            Moradia
+                            <p class="categoria-label">Moradia</p>
                         </td>
-                        <td>
+                        <td class="coluna-valor-transacao">
                             R$ 600,00
                         </td>
                     </tr>
                     <tr>
-                        <td>26/05</td>
-                        <td>
+                        <td class="coluna-descricao-transacao">
                             Aluguel
-                            Moradia
+                            <p class="categoria-label">Moradia</p>
                         </td>
-                        <td>
+                        <td class="coluna-valor-transacao">
                             R$ 600,00
                         </td>
                     </tr>
                     <tr>
-                        <td>26/05</td>
-                        <td>
+                        <td class="coluna-descricao-transacao">
                             Aluguel
-                            Moradia
+                            <p class="categoria-label">Moradia</p>
                         </td>
-                        <td>
+                        <td class="coluna-valor-transacao">
                             R$ 600,00
                         </td>
                     </tr>
                     <tr>
-                        <td>26/05</td>
-                        <td>
+                        <td class="coluna-descricao-transacao">
                             Aluguel
-                            Moradia
+                            <p class="categoria-label">Moradia</p>
                         </td>
-                        <td>
+                        <td class="coluna-valor-transacao">
                             R$ 600,00
                         </td>
                     </tr>
                 </table>
-                <h4>Adicionar despesa</h4>
-                <form name="form-despesa" action="#">
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" name="descricao" required>
-                    <label for="valor">Valor</label>
-                    <input type="number" id="valor" step="0.01" required>
-                    <label for="categoria">Categoria</label>
-                    <select name="categoria" id="categoria" required>
-                        <option value="">Selecione uma categoria</option>
-                        <option value="">Moradia</option>
-                        <option value="">Alimentação</option>
-                        <option value="">Lazer</option>
-                        <option value="">Transporte</option>
-                    </select>
-                    <button type="submit">Adicionar</button>
-                </form>
+                <div class="form-container" id="form-despesa-container">
+                    <h4 class="titulo-form">Adicionar despesa</h4>
+                    <form class="form" name="form-despesa" action="#">
+                        <div class="linha-form">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" id="descricao" name="descricao" required>
+                        </div>
+                        <div class="linha-form">
+                            <label for="valor">Valor</label>
+                            <input type="number" id="valor" step="0.01" required>
+                        </div>
+                        <div class="linha-form">
+                            <label for="categoria">Categoria</label>
+                            <select name="categoria" id="categoria" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="">Moradia</option>
+                                <option value="">Alimentação</option>
+                                <option value="">Lazer</option>
+                                <option value="">Transporte</option>
+                            </select>
+                        </div>
+                        <div class="linha-form">
+                            <button class="btn" type="submit">Adicionar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div id="receitas">
+            <div class="coluna-conteudo" id="receitas">
                 <h3>Receitas</h3>
-                <table>
+                <table class="tabela-transacoes">
                     <tr>
-                        <td>26/05</td>
-                        <td>
+                        <td class="coluna-data" colspan="2">26/05</td>
+                    </tr>
+                    <tr>
+                        <td class="coluna-descricao-transacao">
                             Salário
-                            Receitas
+                            <p class="categoria-label">Receitas</p>
                         </td>
-                        <td>
+                        <td class="coluna-valor-transacao">
                             R$ 600,00
                         </td>
                     </tr>
                 </table>
-                <h4>Adicionar receita</h4>
-                <form name="form-receita" action="#">
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" name="descricao" required>
-                    <label for="valor">Valor</label>
-                    <input type="number" id="valor" step="0.01" required>
-                    <button type="submit">Adicionar</button>
-                </form>
+                <div class="form-container" id="form-receita-container">
+                    <h4 class="titulo-form">Adicionar receita</h4>
+                    <form class="form" name="form-receita" action="#">
+                        <div class="linha-form">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" id="descricao" name="descricao" required>
+                        </div>
+                        <div class="linha-form">
+                            <label for="valor">Valor</label>
+                            <input type="number" id="valor" step="0.01" required>
+                        </div>
+                        <div class="linha-form">
+                            <button class="btn" type="submit">Adicionar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </body>
