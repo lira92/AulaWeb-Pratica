@@ -52,6 +52,10 @@
         }, {});
     }
 
+    var padLeft = function(numero, quantidade, caracter) {
+        return Array(quantidade-String(numero).length+1).join(caracter||'0')+numero;
+    }
+
     var formatarData = function(data) {
         var dataFormatada = data;
         if (typeof(data) == 'string') {
@@ -62,14 +66,26 @@
     }
 
     var renderizarReceita = function(receita) {
-
+        return `<tr>
+            <td class="coluna-descricao-transacao">
+                ${receita.descricao}
+                <p class="categoria-label">Receitas</p>
+            </td>
+            <td class="coluna-valor-transacao">${accounting.formatMoney(receita.valor, "R$ ", 2, '.', ',')}</td>
+        </tr>`;
     }
 
-    var ordenarPorDataMaisRecente = function() {
-
+    var ordenarPorDataMaisRecente = function(a, b) {
+        if (new Date(b) < new Date(a)) {
+            return -1;
+        }
+        if (new Date(b) > new Date(a)) {
+            return 1;
+        }
+        return 0;
     }
 
-    var renderizarDespesas = function(a, b) {
+    var renderizarDespesas = function() {
 
     }
 
@@ -88,9 +104,9 @@
             });
     }
 
-    var receitas = despesasStore.listar();
+    var receitas = receitasStore.listar();
     renderizarReceitas();
-    var despesas = receitasStore.listar();
+    var despesas = despesasStore.listar();
     renderizarDespesas();
 
     elementos.receita.form.onsubmit = function(event) {
@@ -107,6 +123,7 @@
         receitas.push(receita);
         receitasStore.salvar(receitas);
         elementos.receita.form.reset();
+        renderizarReceitas();
 
         alert('Receita salva com sucesso');
     }
