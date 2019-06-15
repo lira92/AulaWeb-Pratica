@@ -4,6 +4,7 @@
         var formDespesa = document.getElementById('form-adicionar-despesa');
         return {
             receita: {
+                tabela: document.getElementById('tabela-receitas'),
                 form: formReceita,
                 campos: {
                     descricao: formReceita.querySelector('[name=descricao]'),
@@ -11,6 +12,7 @@
                 }
             },
             despesa: {
+                tabela: document.getElementById('tabela-despesas'),
                 form: formDespesa,
                 campos: {
                     descricao: formDespesa.querySelector('[name=descricao]'),
@@ -43,10 +45,53 @@
 
     var elementos = obterElementos();
 
+    var agrupar = function(items, propriedade) {
+        return items.reduce(function(acumulador, item) {
+            (acumulador[item[propriedade]] = acumulador[item[propriedade]] || []).push(item);
+            return acumulador;
+        }, {});
+    }
+
+    var formatarData = function(data) {
+        var dataFormatada = data;
+        if (typeof(data) == 'string') {
+            dataFormatada = new Date(data);
+        }
+
+        return `${padLeft(dataFormatada.getDate(), 2)}/${padLeft(dataFormatada.getMonth(), 2)}`;
+    }
+
+    var renderizarReceita = function(receita) {
+
+    }
+
+    var ordenarPorDataMaisRecente = function() {
+
+    }
+
+    var renderizarDespesas = function(a, b) {
+
+    }
+
+    var renderizarReceitas = function() {
+        var receitasAgrupadas = agrupar(receitas, 'data');
+        elementos.receita.tabela.innerHTML = '';
+        Object.keys(receitasAgrupadas)
+            .sort(ordenarPorDataMaisRecente)
+            .forEach(function(grupo) {
+                elementos.receita.tabela.innerHTML += `<tr>
+                    <td class="coluna-data" colspan="2">${formatarData(grupo)}</td>                
+                </tr>`;
+                receitasAgrupadas[grupo].forEach(function(receita) {
+                    elementos.receita.tabela.innerHTML += renderizarReceita(receita);
+                });
+            });
+    }
+
     var receitas = despesasStore.listar();
-    console.log(receitas);
+    renderizarReceitas();
     var despesas = receitasStore.listar();
-    console.log(despesas);
+    renderizarDespesas();
 
     elementos.receita.form.onsubmit = function(event) {
         event.preventDefault();
