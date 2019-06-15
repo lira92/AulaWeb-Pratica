@@ -45,6 +45,42 @@
 
     var elementos = obterElementos();
 
+    var categorias = [
+        {
+            identificador: 'lazer',
+            descricao: 'Lazer',
+            previsto: 320
+        },
+        {
+            identificador: 'alimentacao',
+            descricao: 'Alimentação',
+            previsto: 800
+        },
+        {
+            identificador: 'moradia',
+            descricao: 'Moradia',
+            previsto: 700
+        },
+        {
+            identificador: 'transporte',
+            descricao: 'Transporte',
+            previsto: 500
+        }
+    ];
+
+    var criarOpcaoCategoria = function(categoria) {
+        var elemento = document.createElement('option');
+        elemento.innerHTML = categoria.descricao;
+        elemento.value = categoria.identificador;
+        return elemento;
+    }
+
+    var carregarSelectDeCategorias = function() {
+        categorias.forEach(function(categoria) {
+            elementos.despesa.form.categoria.appendChild(criarOpcaoCategoria(categoria));
+        });
+    }
+
     var agrupar = function(items, propriedade) {
         return items.reduce(function(acumulador, item) {
             (acumulador[item[propriedade]] = acumulador[item[propriedade]] || []).push(item);
@@ -85,8 +121,36 @@
         return 0;
     }
 
-    var renderizarDespesas = function() {
+    var obterCategoria = function(identificador) {
+        return categorias.find(function(categoria) {
+            return categoria.identificador == identificador;
+        });
+    }
 
+    var renderizarDespesa = function(despesa) {
+        var descricaoCategoria = obterCategoria(despesa.categoria).descricao;
+        return `<tr>
+            <td class="coluna-descricao-transacao">
+                ${despesa.descricao}
+                <p class="categoria-label">${descricaoCategoria}</p>
+            </td>
+            <td class="coluna-valor-transacao">${accounting.formatMoney(despesa.valor, "R$ ", 2, '.', ',')}</td>
+        </tr>`;
+    }
+
+    var renderizarDespesas = function() {
+        var despesasAgrupadas = agrupar(despesas, 'data');
+        elementos.despesa.tabela.innerHTML = '';
+        Object.keys(despesasAgrupadas)
+            .sort(ordenarPorDataMaisRecente)
+            .forEach(function(grupo) {
+                elementos.despesa.tabela.innerHTML += `<tr>
+                    <td class="coluna-data" colspan="2">${formatarData(grupo)}</td>                
+                </tr>`;
+                despesasAgrupadas[grupo].forEach(function(despesa) {
+                    elementos.despesa.tabela.innerHTML += renderizarDespesa(despesa);
+                });
+            });
     }
 
     var renderizarReceitas = function() {
@@ -108,6 +172,7 @@
     renderizarReceitas();
     var despesas = despesasStore.listar();
     renderizarDespesas();
+    carregarSelectDeCategorias();
 
     elementos.receita.form.onsubmit = function(event) {
         event.preventDefault();
@@ -142,6 +207,7 @@
         despesas.push(despesa);
         despesasStore.salvar(despesas);
         elementos.despesa.form.reset();
+        renderizarDespesas();
 
         alert('Despesa salva com sucesso');
     }
