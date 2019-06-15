@@ -21,11 +21,32 @@
         };
     }
 
-    var elementos = obterElementos();
-    console.log(elementos);
+    var storeGenerica = function (chave) {
+        return {
+            listar: function() {
+                var itens = localStorage.getItem(chave);
 
-    var receitas = [];
-    var despesas = [];
+                if (!itens) {
+                    return [];
+                }
+
+                return JSON.parse(itens);
+            },
+            salvar: function(items) {
+                localStorage.setItem(chave, JSON.stringify(items));
+            }
+        };
+    }
+
+    var despesasStore = storeGenerica('despesas');
+    var receitasStore = storeGenerica('receitas');
+
+    var elementos = obterElementos();
+
+    var receitas = despesasStore.listar();
+    console.log(receitas);
+    var despesas = receitasStore.listar();
+    console.log(despesas);
 
     elementos.receita.form.onsubmit = function(event) {
         event.preventDefault();
@@ -39,8 +60,8 @@
         });
 
         receitas.push(receita);
+        receitasStore.salvar(receitas);
         elementos.receita.form.reset();
-        console.log(receitas);
 
         alert('Receita salva com sucesso');
     }
@@ -57,8 +78,8 @@
         });
 
         despesas.push(despesa);
+        despesasStore.salvar(despesas);
         elementos.despesa.form.reset();
-        console.log(despesas);
 
         alert('Despesa salva com sucesso');
     }
