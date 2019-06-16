@@ -46,7 +46,7 @@
         };
     }
 
-    var despesasStore = storeGenerica('despesas-'+0619);
+    var despesasStore = storeGenerica('despesas');
     var receitasStore = storeGenerica('receitas');
 
     var elementos = obterElementos();
@@ -214,7 +214,7 @@
         var previstoDespesas = categorias.reduce(function(acumulador, categoria) {
             acumulador += categoria.previsto;
             return acumulador;
-        })
+        }, 0)
 
         elementos.cabecalho.principal.innerHTML = '';
 
