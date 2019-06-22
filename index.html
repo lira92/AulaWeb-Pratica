@@ -10,43 +10,45 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div id="cabecalho">
-            <div id="cabecalho-principal">
+        <header id="cabecalho">
+            <section id="cabecalho-principal">
                 <div id="container-esquerdo">
                     <i class="fas fa-bars"></i>
                 </div>
                 <div id="container-central">
-                    <h5 class="ofuscado">Saldo atual</h5>
-                    <h2 id="saldo"></h2>
-                    <h4>
-                        <button class="btn btn-redondo">
-                            <i class="fas fa-caret-left"></i>
-                        </button>
-                        Maio
-                        <button class="btn btn-redondo">
-                            <i class="fas fa-caret-right"></i>
-                        </button>
-                    </h4>
+                    <hgroup>
+                        <h5 class="ofuscado">Saldo atual</h5>
+                        <h2 id="saldo"></h2>
+                        <h4>
+                            <button class="btn btn-redondo">
+                                <i class="fas fa-caret-left"></i>
+                            </button>
+                            Maio
+                            <button class="btn btn-redondo">
+                                <i class="fas fa-caret-right"></i>
+                            </button>
+                        </h4>
+                    </hgroup>
                 </div>
                 <div id="container-direito">
                     <i class="fas fa-cog"></i>
                 </div>
-            </div>
-            <div id="cabecalho-conteudo">
+            </section>
+            <section id="cabecalho-conteudo">
                 <div id="progresso-principal">
                 </div>
                 <div id="progresso-categoria">
                 </div>
                 <div id="visao-geral">
                 </div>
-            </div>
-        </div>
-        <div id="conteudo">
-            <div class="coluna-conteudo" id="despesas">
+            </section>
+        </header>
+        <main id="conteudo">
+            <section class="coluna-conteudo" id="despesas">
                 <h3>Despesas</h3>
                 <table id="tabela-despesas" class="tabela-transacoes">                   
                 </table>
-                <div class="form-container" id="form-despesa-container">
+                <section class="form-container" id="form-despesa-container">
                     <h4 class="titulo-form">Adicionar despesa</h4>
                     <form id="form-adicionar-despesa" class="form" name="form-despesa" action="#">
                         <div class="linha-form">
@@ -67,13 +69,13 @@
                             <button class="btn" type="submit">Adicionar</button>
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="coluna-conteudo" id="receitas">
+                </section>
+            </section>
+            <section class="coluna-conteudo" id="receitas">
                 <h3>Receitas</h3>
                 <table id="tabela-receitas" class="tabela-transacoes">
                 </table>
-                <div class="form-container" id="form-receita-container">
+                <section class="form-container" id="form-receita-container">
                     <h4 class="titulo-form">Adicionar receita</h4>
                     <form id="form-adicionar-receita" class="form" name="form-receita" action="#">
                         <div class="linha-form">
@@ -88,9 +90,9 @@
                             <button class="btn" type="submit">Adicionar</button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
+                </section>
+            </section>
+        </main>
         <script src="node_modules/accounting/accounting.min.js"></script>
         <script src="js/main.js"></script>
     </body>
