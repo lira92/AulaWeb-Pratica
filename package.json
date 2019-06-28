@@ -1,0 +1,27 @@
+{
+  "name": "orcamento-pessoal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "accounting": "^0.4.1"
+  },
+  "devDependencies": {
+    "serve": "11.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lira92/AulaWeb-Pratica.git"
+  },
+  "author": "Alan Lira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lira92/AulaWeb-Pratica/issues"
+  },
+  "homepage": "https://github.com/lira92/AulaWeb-Pratica#readme"
+}
