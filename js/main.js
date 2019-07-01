@@ -1,5 +1,5 @@
-(function main() {
-    const obterElementos = function() {
+(async () => {
+    const obterElementos = () => {
         const formReceita = document.getElementById('form-adicionar-receita');
         const formDespesa = document.getElementById('form-adicionar-despesa');
         return {
@@ -29,35 +29,38 @@
         };
     }
 
-    const storeGenerica = function (chave) {
-        return {
-            listar: function() {
-                return new Promise(function(resolve, reject) {
-                    setTimeout(function() {
-                        const itens = localStorage.getItem(chave);
+    class storeGenerica {
+        constructor(chave) {
+            this.chave = chave;
+        }
 
-                        if (!itens) {
-                            resolve([]);
-                            return;
-                        }
+        listar = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const itens = localStorage.getItem(this.chave);
 
-                        resolve(JSON.parse(itens))
-                    }, 2000);
-                })
-            },
-            salvar: function(items) {
-                return new Promise(function(resolve) {
-                    setTimeout(function() {
-                        localStorage.setItem(chave, JSON.stringify(items));
-                        resolve();
-                    }, 2000);
-                })
-            }
-        };
+                    if (!itens) {
+                        resolve([]);
+                        return;
+                    }
+
+                    resolve(JSON.parse(itens))
+                }, 2000);
+            })
+        }
+
+        salvar = () => {
+            return new Promise(function(resolve) {
+                setTimeout(() => {
+                    localStorage.setItem(this.chave, JSON.stringify(items));
+                    resolve();
+                }, 2000);
+            })
+        }
     }
 
-    const despesasStore = storeGenerica('despesas');
-    const receitasStore = storeGenerica('receitas');
+    const despesasStore = new storeGenerica('despesas');
+    const receitasStore = new storeGenerica('receitas');
 
     const elementos = obterElementos();
 
@@ -85,31 +88,31 @@
     ];
     const previstoDeReceita = 4000;
 
-    const criarOpcaoCategoria = function(categoria) {
+    const criarOpcaoCategoria = (categoria) => {
         const elemento = document.createElement('option');
         elemento.innerHTML = categoria.descricao;
         elemento.value = categoria.identificador;
         return elemento;
     }
 
-    const carregarSelectDeCategorias = function() {
-        categorias.forEach(function(categoria) {
+    const carregarSelectDeCategorias = () => {
+        categorias.forEach((categoria) => {
             elementos.despesa.form.categoria.appendChild(criarOpcaoCategoria(categoria));
         });
     }
 
-    const agrupar = function(items, propriedade) {
-        return items.reduce(function(acumulador, item) {
+    const agrupar = (items, propriedade) => {
+        return items.reduce((acumulador, item) => {
             (acumulador[item[propriedade]] = acumulador[item[propriedade]] || []).push(item);
             return acumulador;
         }, {});
     }
 
-    const padLeft = function(numero, quantidade, caracter) {
+    const padLeft = (numero, quantidade, caracter) => {
         return Array(quantidade-String(numero).length+1).join(caracter||'0')+numero;
     }
 
-    const formatarData = function(data) {
+    const formatarData = (data) => {
         let dataFormatada = data;
         if (typeof(data) == 'string') {
             dataFormatada = new Date(data);
@@ -118,7 +121,7 @@
         return `${padLeft(dataFormatada.getDate(), 2)}/${padLeft(dataFormatada.getMonth(), 2)}`;
     }
 
-    const renderizarReceita = function(receita) {
+    const renderizarReceita = (receita) => {
         return `<tr>
             <td class="coluna-descricao-transacao">
                 ${receita.descricao}
@@ -128,7 +131,7 @@
         </tr>`;
     }
 
-    const ordenarPorDataMaisRecente = function(a, b) {
+    const ordenarPorDataMaisRecente = (a, b) => {
         if (new Date(b) < new Date(a)) {
             return -1;
         }
@@ -138,13 +141,11 @@
         return 0;
     }
 
-    const obterCategoria = function(identificador) {
-        return categorias.find(function(categoria) {
-            return categoria.identificador == identificador;
-        });
+    const obterCategoria = (identificador) => {
+        return categorias.find(categoria => categoria.identificador == identificador);
     }
 
-    const renderizarDespesa = function(despesa) {
+    const renderizarDespesa = (despesa) => {
         const descricaoCategoria = obterCategoria(despesa.categoria).descricao;
         return `<tr>
             <td class="coluna-descricao-transacao">
@@ -155,38 +156,38 @@
         </tr>`;
     }
 
-    const renderizarDespesas = function() {
+    const renderizarDespesas = () => {
         const despesasAgrupadas = agrupar(despesas, 'data');
         elementos.despesa.tabela.innerHTML = '';
         Object.keys(despesasAgrupadas)
             .sort(ordenarPorDataMaisRecente)
-            .forEach(function(grupo) {
+            .forEach((grupo) => {
                 elementos.despesa.tabela.innerHTML += `<tr>
                     <td class="coluna-data" colspan="2">${formatarData(grupo)}</td>                
                 </tr>`;
-                despesasAgrupadas[grupo].forEach(function(despesa) {
+                despesasAgrupadas[grupo].forEach((despesa) => {
                     elementos.despesa.tabela.innerHTML += renderizarDespesa(despesa);
                 });
             });
     }
 
-    const renderizarReceitas = function() {
+    const renderizarReceitas = () => {
         const receitasAgrupadas = agrupar(receitas, 'data');
         elementos.receita.tabela.innerHTML = '';
         Object.keys(receitasAgrupadas)
             .sort(ordenarPorDataMaisRecente)
-            .forEach(function(grupo) {
+            .forEach((grupo) => {
                 elementos.receita.tabela.innerHTML += `<tr>
                     <td class="coluna-data" colspan="2">${formatarData(grupo)}</td>                
                 </tr>`;
-                receitasAgrupadas[grupo].forEach(function(receita) {
+                receitasAgrupadas[grupo].forEach((receita) => {
                     elementos.receita.tabela.innerHTML += renderizarReceita(receita);
                 });
             });
     }
 
-    const calcularTotais = function() {
-        const totaisDespesas = despesas.reduce(function(acumulador, despesaAtual) {
+    const calcularTotais = () => {
+        const totaisDespesas = despesas.reduce((acumulador, despesaAtual) => {
             if (!acumulador.hasOwnProperty(despesaAtual.categoria)) {
                 acumulador[despesaAtual.categoria] = 0;
             }
@@ -196,7 +197,7 @@
             return acumulador;
         }, { despesas: 0 });
 
-        const totalReceita = receitas.reduce(function(acumulador, receita) {
+        const totalReceita = receitas.reduce((acumulador, receita) => {
             acumulador += Number.parseFloat(receita.valor);
             return acumulador;
         }, 0);
@@ -208,7 +209,7 @@
         };
     }
     
-    const renderizarProgressoCategoria = function(categoria, totais) {
+    const renderizarProgressoCategoria = (categoria, totais) => {
         let totalCategoria = 0;
         if (totais.hasOwnProperty(categoria.identificador)) {
             totalCategoria = totais[categoria.identificador];
@@ -220,8 +221,8 @@
         </div>`;
     }
 
-    const renderizarColunaPrincipal = function(totais) {
-        const previstoDespesas = categorias.reduce(function(acumulador, categoria) {
+    const renderizarColunaPrincipal = (totais) => {
+        const previstoDespesas = categorias.reduce((acumulador, categoria) => {
             acumulador += categoria.previsto;
             return acumulador;
         }, 0)
@@ -241,21 +242,21 @@
         }, totais);
     }
     
-    const renderizarColunaCategorias = function(totais) {
+    const renderizarColunaCategorias = (totais) => {
         elementos.cabecalho.categorias.innerHTML = '';
-        categorias.forEach(function(categoria) {
+        categorias.forEach((categoria) => {
             elementos.cabecalho.categorias.innerHTML += renderizarProgressoCategoria(categoria, totais);
         })
     }
 
-    const renderizarItemVisaoGeral = function(item) {
+    const renderizarItemVisaoGeral = (item) => {
         return `<div class="visao-geral-container">
             <h5><span class="ofuscado">${item.descricao}</h5>
             <span class="texto-grande">${accounting.formatMoney(item.valor, 'R$ ', 2, '.', ',')}</span>
         </div>`
     }
 
-    const renderizarVisaoGeral = function({ receitas: totalReceitas, despesas: totalDespesas, total }) {
+    const renderizarVisaoGeral = ({ receitas: totalReceitas, despesas: totalDespesas, total }) => {
         elementos.cabecalho.visalGeral.innerHTML = '';
 
         elementos.cabecalho.visalGeral.innerHTML += renderizarItemVisaoGeral({
@@ -274,7 +275,7 @@
         });
     }
 
-    const renderizarCabecalho = function() {
+    const renderizarCabecalho = () => {
         const totais = calcularTotais();
 
         renderizarColunaPrincipal(totais);
@@ -289,74 +290,71 @@
 
     let receitas = [];
     const receitasPromise = receitasStore.listar();
-    receitasPromise.then(function(receitasArmazenadas) {
+    receitasPromise.then((receitasArmazenadas) => {
         receitas = receitasArmazenadas;
         renderizarReceitas();
     })
     
     let despesas = [];
     const despesasPromise = despesasStore.listar();
-    despesasPromise.then(function(despesasArmazenadas) {
+    despesasPromise.then((despesasArmazenadas) => {
         despesas = despesasArmazenadas;
         renderizarDespesas();
     })
 
-    Promise.all([
+    await Promise.all([
         receitasPromise,
         despesasPromise
-    ]).then(function() {
-        renderizarCabecalho();
-        carregarSelectDeCategorias();
-    });
+    ]);
+    renderizarCabecalho();
+    carregarSelectDeCategorias();
 
-    elementos.receita.form.onsubmit = function(event) {
+    elementos.receita.form.onsubmit = async (event) => {
         event.preventDefault();
 
         const receita = {
             data: new Date(new Date().setHours(0,0,0,0)).toISOString()
         };
 
-        Object.keys(elementos.receita.campos).forEach(function(campo) {
+        Object.keys(elementos.receita.campos).forEach((campo) => {
             const { value } = elementos.receita.campos[campo];
             receita[campo] = value;
         });
 
         receitas.push(receita);
-        receitasStore
-            .salvar(receitas)
-            .then(function() {
-                elementos.receita.form.reset();
-                renderizarReceitas();
-                renderizarCabecalho();
-                alert('Receita salva com sucesso');
-            }).catch(function() {
-                alert('Ocorreu um erro ao salvar a receita');
-            });
+        try {
+            await receitasStore.salvar(receitas);
+            elementos.receita.form.reset();
+            renderizarReceitas();
+            renderizarCabecalho();
+            alert('Receita salva com sucesso');
+        } catch {
+            alert('Ocorreu um erro ao salvar a receita');
+        }
     }
 
-    elementos.despesa.form.onsubmit = function(event) {
+    elementos.despesa.form.onsubmit = async (event) => {
         event.preventDefault();
 
         const despesa = {
             data: new Date(new Date().setHours(0,0,0,0)).toISOString()
         };
 
-        Object.keys(elementos.despesa.campos).forEach(function(campo) {
+        Object.keys(elementos.despesa.campos).forEach((campo) => {
             const { value } = elementos.despesa.campos[campo];
             despesa[campo] = value;
         });
 
         despesas.push(despesa);
-        despesasStore
-            .salvar(despesas)
-            .then(function() {
-                elementos.despesa.form.reset();
-                renderizarDespesas();
-                renderizarCabecalho();
-        
-                alert('Despesa salva com sucesso');
-            }).catch(function() {
-                alert('Ocorreu um erro ao salvar a despesa');
-            });
+        try {
+            await despesasStore.salvar(despesas);
+            elementos.despesa.form.reset();
+            renderizarDespesas();
+            renderizarCabecalho();
+    
+            alert('Despesa salva com sucesso');
+        } catch {
+            alert('Ocorreu um erro ao salvar a despesa');
+        }
     }
 })();
