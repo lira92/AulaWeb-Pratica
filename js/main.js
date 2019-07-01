@@ -1,7 +1,7 @@
 (function main() {
-    var obterElementos = function() {
-        var formReceita = document.getElementById('form-adicionar-receita');
-        var formDespesa = document.getElementById('form-adicionar-despesa');
+    const obterElementos = function() {
+        const formReceita = document.getElementById('form-adicionar-receita');
+        const formDespesa = document.getElementById('form-adicionar-despesa');
         return {
             cabecalho: {
                 saldo: document.getElementById('saldo'),
@@ -29,12 +29,12 @@
         };
     }
 
-    var storeGenerica = function (chave) {
+    const storeGenerica = function (chave) {
         return {
             listar: function() {
                 return new Promise(function(resolve, reject) {
                     setTimeout(function() {
-                        var itens = localStorage.getItem(chave);
+                        const itens = localStorage.getItem(chave);
 
                         if (!itens) {
                             resolve([]);
@@ -56,13 +56,12 @@
         };
     }
 
-    var despesasStore = storeGenerica('despesas');
-    var receitasStore = storeGenerica('receitas');
+    const despesasStore = storeGenerica('despesas');
+    const receitasStore = storeGenerica('receitas');
 
-    var elementos = obterElementos();
-    console.log(elementos);
+    const elementos = obterElementos();
 
-    var categorias = [
+    const categorias = [
         {
             identificador: 'lazer',
             descricao: 'Lazer',
@@ -84,34 +83,34 @@
             previsto: 500
         }
     ];
-    var previstoDeReceita = 4000;
+    const previstoDeReceita = 4000;
 
-    var criarOpcaoCategoria = function(categoria) {
-        var elemento = document.createElement('option');
+    const criarOpcaoCategoria = function(categoria) {
+        const elemento = document.createElement('option');
         elemento.innerHTML = categoria.descricao;
         elemento.value = categoria.identificador;
         return elemento;
     }
 
-    var carregarSelectDeCategorias = function() {
+    const carregarSelectDeCategorias = function() {
         categorias.forEach(function(categoria) {
             elementos.despesa.form.categoria.appendChild(criarOpcaoCategoria(categoria));
         });
     }
 
-    var agrupar = function(items, propriedade) {
+    const agrupar = function(items, propriedade) {
         return items.reduce(function(acumulador, item) {
             (acumulador[item[propriedade]] = acumulador[item[propriedade]] || []).push(item);
             return acumulador;
         }, {});
     }
 
-    var padLeft = function(numero, quantidade, caracter) {
+    const padLeft = function(numero, quantidade, caracter) {
         return Array(quantidade-String(numero).length+1).join(caracter||'0')+numero;
     }
 
-    var formatarData = function(data) {
-        var dataFormatada = data;
+    const formatarData = function(data) {
+        let dataFormatada = data;
         if (typeof(data) == 'string') {
             dataFormatada = new Date(data);
         }
@@ -119,7 +118,7 @@
         return `${padLeft(dataFormatada.getDate(), 2)}/${padLeft(dataFormatada.getMonth(), 2)}`;
     }
 
-    var renderizarReceita = function(receita) {
+    const renderizarReceita = function(receita) {
         return `<tr>
             <td class="coluna-descricao-transacao">
                 ${receita.descricao}
@@ -129,7 +128,7 @@
         </tr>`;
     }
 
-    var ordenarPorDataMaisRecente = function(a, b) {
+    const ordenarPorDataMaisRecente = function(a, b) {
         if (new Date(b) < new Date(a)) {
             return -1;
         }
@@ -139,14 +138,14 @@
         return 0;
     }
 
-    var obterCategoria = function(identificador) {
+    const obterCategoria = function(identificador) {
         return categorias.find(function(categoria) {
             return categoria.identificador == identificador;
         });
     }
 
-    var renderizarDespesa = function(despesa) {
-        var descricaoCategoria = obterCategoria(despesa.categoria).descricao;
+    const renderizarDespesa = function(despesa) {
+        const descricaoCategoria = obterCategoria(despesa.categoria).descricao;
         return `<tr>
             <td class="coluna-descricao-transacao">
                 ${despesa.descricao}
@@ -156,8 +155,8 @@
         </tr>`;
     }
 
-    var renderizarDespesas = function() {
-        var despesasAgrupadas = agrupar(despesas, 'data');
+    const renderizarDespesas = function() {
+        const despesasAgrupadas = agrupar(despesas, 'data');
         elementos.despesa.tabela.innerHTML = '';
         Object.keys(despesasAgrupadas)
             .sort(ordenarPorDataMaisRecente)
@@ -171,8 +170,8 @@
             });
     }
 
-    var renderizarReceitas = function() {
-        var receitasAgrupadas = agrupar(receitas, 'data');
+    const renderizarReceitas = function() {
+        const receitasAgrupadas = agrupar(receitas, 'data');
         elementos.receita.tabela.innerHTML = '';
         Object.keys(receitasAgrupadas)
             .sort(ordenarPorDataMaisRecente)
@@ -186,8 +185,8 @@
             });
     }
 
-    var calcularTotais = function() {
-        var totaisDespesas = despesas.reduce(function(acumulador, despesaAtual) {
+    const calcularTotais = function() {
+        const totaisDespesas = despesas.reduce(function(acumulador, despesaAtual) {
             if (!acumulador.hasOwnProperty(despesaAtual.categoria)) {
                 acumulador[despesaAtual.categoria] = 0;
             }
@@ -197,19 +196,20 @@
             return acumulador;
         }, { despesas: 0 });
 
-        var totalReceita = receitas.reduce(function(acumulador, receita) {
+        const totalReceita = receitas.reduce(function(acumulador, receita) {
             acumulador += Number.parseFloat(receita.valor);
             return acumulador;
         }, 0);
 
-        return Object.assign({
+        return {
+            ...totaisDespesas,
             receitas: totalReceita,
             total: totalReceita - totaisDespesas.despesas
-        }, totaisDespesas);
+        };
     }
     
-    var renderizarProgressoCategoria = function(categoria, totais) {
-        var totalCategoria = 0;
+    const renderizarProgressoCategoria = function(categoria, totais) {
+        let totalCategoria = 0;
         if (totais.hasOwnProperty(categoria.identificador)) {
             totalCategoria = totais[categoria.identificador];
         }
@@ -220,8 +220,8 @@
         </div>`;
     }
 
-    var renderizarColunaPrincipal = function(totais) {
-        var previstoDespesas = categorias.reduce(function(acumulador, categoria) {
+    const renderizarColunaPrincipal = function(totais) {
+        const previstoDespesas = categorias.reduce(function(acumulador, categoria) {
             acumulador += categoria.previsto;
             return acumulador;
         }, 0)
@@ -241,41 +241,41 @@
         }, totais);
     }
     
-    var renderizarColunaCategorias = function(totais) {
+    const renderizarColunaCategorias = function(totais) {
         elementos.cabecalho.categorias.innerHTML = '';
         categorias.forEach(function(categoria) {
             elementos.cabecalho.categorias.innerHTML += renderizarProgressoCategoria(categoria, totais);
         })
     }
 
-    var renderizarItemVisaoGeral = function(item) {
+    const renderizarItemVisaoGeral = function(item) {
         return `<div class="visao-geral-container">
             <h5><span class="ofuscado">${item.descricao}</h5>
             <span class="texto-grande">${accounting.formatMoney(item.valor, 'R$ ', 2, '.', ',')}</span>
         </div>`
     }
 
-    var renderizarVisaoGeral = function(totais) {
+    const renderizarVisaoGeral = function({ receitas: totalReceitas, despesas: totalDespesas, total }) {
         elementos.cabecalho.visalGeral.innerHTML = '';
 
         elementos.cabecalho.visalGeral.innerHTML += renderizarItemVisaoGeral({
             descricao: 'Receitas',
-            valor: totais.receitas
+            valor: totalReceitas
         });
 
         elementos.cabecalho.visalGeral.innerHTML += renderizarItemVisaoGeral({
             descricao: 'Despesas',
-            valor: totais.despesas
+            valor: totalDespesas
         });
 
         elementos.cabecalho.visalGeral.innerHTML += renderizarItemVisaoGeral({
             descricao: 'Economia',
-            valor: totais.total
+            valor: total
         });
     }
 
-    var renderizarCabecalho = function() {
-        var totais = calcularTotais();
+    const renderizarCabecalho = function() {
+        const totais = calcularTotais();
 
         renderizarColunaPrincipal(totais);
         
@@ -283,18 +283,19 @@
 
         renderizarVisaoGeral(totais);
 
-        elementos.cabecalho.saldo.innetHTML = accounting.formatMoney(totais.total, 'R$ ', 2, '.', ',');
+        const { total } = totais;
+        elementos.cabecalho.saldo.innerHTML = accounting.formatMoney(total, 'R$ ', 2, '.', ',');
     }
 
-    var receitas = [];
-    var receitasPromise = receitasStore.listar();
+    let receitas = [];
+    const receitasPromise = receitasStore.listar();
     receitasPromise.then(function(receitasArmazenadas) {
         receitas = receitasArmazenadas;
         renderizarReceitas();
     })
     
-    var despesas = [];
-    var despesasPromise = despesasStore.listar();
+    let despesas = [];
+    const despesasPromise = despesasStore.listar();
     despesasPromise.then(function(despesasArmazenadas) {
         despesas = despesasArmazenadas;
         renderizarDespesas();
@@ -311,12 +312,13 @@
     elementos.receita.form.onsubmit = function(event) {
         event.preventDefault();
 
-        var receita = {
+        const receita = {
             data: new Date(new Date().setHours(0,0,0,0)).toISOString()
         };
 
         Object.keys(elementos.receita.campos).forEach(function(campo) {
-            receita[campo] = elementos.receita.campos[campo].value;
+            const { value } = elementos.receita.campos[campo];
+            receita[campo] = value;
         });
 
         receitas.push(receita);
@@ -335,12 +337,13 @@
     elementos.despesa.form.onsubmit = function(event) {
         event.preventDefault();
 
-        var despesa = {
+        const despesa = {
             data: new Date(new Date().setHours(0,0,0,0)).toISOString()
         };
 
         Object.keys(elementos.despesa.campos).forEach(function(campo) {
-            despesa[campo] = elementos.despesa.campos[campo].value;
+            const { value } = elementos.despesa.campos[campo];
+            despesa[campo] = value;
         });
 
         despesas.push(despesa);
