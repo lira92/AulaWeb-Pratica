@@ -2,12 +2,12 @@ import React from 'react';
 import TabelaReceitas from '../TabelaReceitas/TabelaReceitas';
 import FormReceitas from '../FormReceitas/FormReceitas';
 
-const Receitas = () => {
+const Receitas = (props) => {
   return (
     <section className="coluna-conteudo" id="receitas">
       <h3>Receitas</h3>
-      <TabelaReceitas />
-      <FormReceitas />
+      <TabelaReceitas receitas={props.receitas}/>
+      <FormReceitas onReceitaAdicionada={props.onReceitaAdicionada}/>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
+import formatacoesService from 'services/formatacoes';
 
-const CabecalhoPrincipal = () => {
+const CabecalhoPrincipal = (props) => {
   return (
     <section id="cabecalho-principal">
       <div id="container-esquerdo">
@@ -9,13 +10,13 @@ const CabecalhoPrincipal = () => {
       <div id="container-central">
         <hgroup>
           <h5 className="ofuscado">Saldo atual</h5>
-          <h2 id="saldo"></h2>
+          <h2 id="saldo">{formatacoesService.formatarMoeda(props.saldo)}</h2>
           <h4>
             <button className="btn btn-redondo">
               <i className="fas fa-caret-left"></i>
             </button>
             Maio
-                            <button className="btn btn-redondo">
+            <button className="btn btn-redondo">
               <i className="fas fa-caret-right"></i>
             </button>
           </h4>

@@ -6,7 +6,7 @@ const Main = (props) => {
   return (
     <main id="conteudo">
       <Despesas despesas={props.despesas} onDespesaAdicionada={props.onDespesaAdicionada}/>
-      <Receitas />
+      <Receitas receitas={props.receitas} onReceitaAdicionada={props.onReceitaAdicionada}/>
     </main>
   );
 }

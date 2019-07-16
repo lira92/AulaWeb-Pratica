@@ -29,7 +29,7 @@ const TabelaDespesas = (props) => {
       <tbody>
         {
           obterDatasOrdenadas(despesasAgrupadas).map(grupo => (
-            <GrupoTransacoes grupo={grupo} transacoes={despesasAgrupadas[grupo]} obterCategoria={obterCategoria}/>
+            <GrupoTransacoes key={grupo} grupo={grupo} transacoes={despesasAgrupadas[grupo]} obterCategoria={obterCategoria}/>
           ))
         }
       </tbody>

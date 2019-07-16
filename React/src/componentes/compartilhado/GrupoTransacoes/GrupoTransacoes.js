@@ -3,11 +3,11 @@ import formatacoesService from 'services/formatacoes';
 
 const GrupoTransacoes = (props) => {
   return [
-    <tr>
-      <td className="coluna-data" colspan="2">{formatacoesService.formatarData(props.grupo)}</td>
+    <tr key={props.grupo}>
+      <td className="coluna-data" colSpan="2">{formatacoesService.formatarData(props.grupo)}</td>
     </tr>,
     props.transacoes.map(transacao => (
-      <tr>
+      <tr key={props.grupo+transacao.descricao}>
         <td className="coluna-descricao-transacao">
           {transacao.descricao}
           <p className="categoria-label">{props.obterCategoria(transacao)}</p>
