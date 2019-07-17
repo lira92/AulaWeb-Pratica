@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+#cabecalho {
+    background-color: #3183fe;
+    color: #fff;
+    padding: 20px;
+    text-transform: uppercase;
+}
+
+#cabecalho-principal {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cabecalho-principal #container-central {
+    text-align: center;
+}
+
+#cabecalho-principal .fas {
+    font-size: 20px;
+}
+
+.btn {
+    background-color: unset;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn-redondo {
+    border-radius: 50%;
+    padding: 4px 9px;
+}
+
+#cabecalho .btn {
+    color: #fff;
+}
+
+#cabecalho .btn-redondo {
+    background-color: #2178e3;
+}
+
+#cabecalho-conteudo {
+    margin-top: 20px;
+    padding: 0 50px;
+    display: flex;
+}
+
+#progresso-principal, #progresso-categoria {
+    flex: 2;
+    padding: 5px;
+}
+
+#visao-geral {
+    flex: 1;
+    padding: 5px;
+}
+
+#visao-geral .visao-geral-container {
+    padding: 10px;
+}
+
+.ofuscado {
+    opacity: 0.8;
+}
+
+.texto-grande {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+progress[value] {
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #2178e3;
+    color: #fff;
+    margin: 5px 0 25px;
+    border: 0;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #2178e3;
+    border-radius: 10px;
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+progress[value]::-moz-progress-bar {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+#conteudo {
+    display: flex;
+    justify-content: center;
+    padding: 10px 50px;
+}
+
+#conteudo .coluna-conteudo {
+    flex: 1;
+}
+
+#conteudo .coluna-conteudo:first-child {
+    margin-right: 50px;
+}
+
+.tabela-transacoes {
+    width: 100%;
+}
+
+.tabela-transacoes td {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    color: #4b4b4d;
+    font-weight: bold;
+}
+
+.tabela-transacoes td.coluna-descricao-transacao {
+    padding-left: 30px;
+}
+
+.tabela-transacoes td.coluna-descricao-transacao p {
+    font-size: 0.7em;
+    opacity: 0.8;
+    margin-top: 3px;
+}
+
+.tabela-transacoes td.coluna-valor-transacao {
+    text-align: right;
+}
+
+.tabela-transacoes td.coluna-data {
+    border: 0;
+    padding-bottom: 0;
+}
+
+#receitas .tabela-transacoes td.coluna-valor-transacao {
+    color: #4ab24a;
+}
+
+#despesas .tabela-transacoes td.coluna-valor-transacao {
+    color: #d01f1f;
+}
+
+.form-container {
+    margin-top: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.form-container .titulo-form {
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+}
+
+.form .linha-form:not(:last-child) {
+    margin-right: 15px;
+}
+
+.linha-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.linha-form label {
+    margin-bottom: 2px;
+}
+
+.linha-form label, .linha-form select {
+    font-size: 0.9em;
+}
+
+.linha-form button {
+    background-color: #2178e3;
+    border: 0;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
