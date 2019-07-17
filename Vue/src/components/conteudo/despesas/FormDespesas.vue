@@ -73,6 +73,8 @@ export default {
           data: new Date(new Date().setHours(0,0,0,0)).toISOString()
         };
 
+        this.$emit('despesaAdicionada');
+
         alert('Despesa salva com sucesso');
       } catch {
         alert('Ocorreu um erro ao salvar a despesa');
