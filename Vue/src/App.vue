@@ -1,66 +1,21 @@
 <template>
   <div id="app">
     <Header />
-    <main id="conteudo">
-      <section class="coluna-conteudo" id="despesas">
-        <h3>Despesas</h3>
-        <table id="tabela-despesas" class="tabela-transacoes"></table>
-        <section class="form-container" id="form-despesa-container">
-          <h4 class="titulo-form">Adicionar despesa</h4>
-          <form id="form-adicionar-despesa" class="form" name="form-despesa" action="#">
-            <div class="linha-form">
-              <label for="descricao">Descrição</label>
-              <input type="text" id="descricao" name="descricao" required />
-            </div>
-            <div class="linha-form">
-              <label for="valor">Valor</label>
-              <input type="number" name="valor" id="valor" step="0.01" required />
-            </div>
-            <div class="linha-form">
-              <label for="categoria">Categoria</label>
-              <select name="categoria" id="categoria" required>
-                <option value>Selecione uma categoria</option>
-              </select>
-            </div>
-            <div class="linha-form">
-              <button class="btn" type="submit">Adicionar</button>
-            </div>
-          </form>
-        </section>
-      </section>
-      <section class="coluna-conteudo" id="receitas">
-        <h3>Receitas</h3>
-        <table id="tabela-receitas" class="tabela-transacoes"></table>
-        <section class="form-container" id="form-receita-container">
-          <h4 class="titulo-form">Adicionar receita</h4>
-          <form id="form-adicionar-receita" class="form" name="form-receita" action="#">
-            <div class="linha-form">
-              <label for="descricao">Descrição</label>
-              <input type="text" id="descricao" name="descricao" required />
-            </div>
-            <div class="linha-form">
-              <label for="valor">Valor</label>
-              <input type="number" name="valor" id="valor" step="0.01" required />
-            </div>
-            <div class="linha-form">
-              <button class="btn" type="submit">Adicionar</button>
-            </div>
-          </form>
-        </section>
-      </section>
-    </main>
+    <Main />
   </div>
 </template>
 
 <script>
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./font-montserrat.css";
-import Header from './components/Header';
+import Header from "./components/cabecalho/Header";
+import Main from "./components/conteudo/Main";
 
 export default {
   name: "app",
   components: {
-    Header
+    Header,
+    Main
   }
 };
 </script>
