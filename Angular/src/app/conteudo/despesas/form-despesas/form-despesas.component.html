@@ -1,18 +1,39 @@
 <section class="form-container" id="form-despesa-container">
   <h4 class="titulo-form">Adicionar despesa</h4>
-  <form id="form-adicionar-despesa" class="form" name="form-despesa" action="#">
+  <form
+    ngNativeValidate
+    (ngSubmit)="onSubmit()"
+    id="form-adicionar-despesa"
+    class="form"
+    name="form-despesa"
+    action="#">
     <div class="linha-form">
       <label for="descricao">Descrição</label>
-      <input type="text" id="descricao" name="descricao" required>
+      <input
+        type="text"
+        [(ngModel)]="despesa.descricao"
+        name="descricao"
+        required>
     </div>
     <div class="linha-form">
       <label for="valor">Valor</label>
-      <input type="number" name="valor" id="valor" step="0.01" required>
+      <input
+        type="number"
+        name="valor"
+        [(ngModel)]="despesa.valor"
+        step="0.01"
+        required>
     </div>
     <div class="linha-form">
       <label for="categoria">Categoria</label>
-      <select name="categoria" id="categoria" required>
+      <select
+        name="categoria"
+        [(ngModel)]="despesa.categoria"
+        required>
         <option value="">Selecione uma categoria</option>
+        <option
+          [value]="categoria.identificador"
+          *ngFor="let categoria of categorias">{{categoria.descricao}}</option>
       </select>
     </div>
     <div class="linha-form">
