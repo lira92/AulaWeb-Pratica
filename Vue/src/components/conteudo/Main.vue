@@ -1,7 +1,11 @@
 <template>
   <main id="conteudo">
-    <Despesas :despesas="despesas" @despesaAdicionada="despesaAdicionada" />
-    <Receitas />
+    <Despesas
+      :despesas="despesas"
+      @despesaAdicionada="despesaAdicionada" />
+    <Receitas
+      :receitas="receitas"
+      @receitaAdicionada="receitaAdicionada"/>
   </main>
 </template>
 
@@ -11,7 +15,8 @@ import Receitas from "./receitas/Receitas";
 
 export default {
   props: {
-    despesas: Array
+    despesas: Array,
+    receitas: Array
   },
   components: {
     Despesas,
@@ -20,6 +25,9 @@ export default {
   methods: {
     despesaAdicionada() {
       this.$emit("despesaAdicionada");
+    },
+    receitaAdicionada() {
+      this.$emit("receitaAdicionada");
     }
   }
 };

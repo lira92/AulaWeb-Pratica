@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import GrupoTransacoes from "@/components/compartilhado/GrupoTransacoes";
+import GrupoTransacoes from "@/components/compartilhado/transacoes/GrupoTransacoes";
 import colecoesService from "@/services/colecoes";
 import configuracoes from "@/services/configuracoes";
 

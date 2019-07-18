@@ -6,7 +6,7 @@
     <div id="container-central">
       <hgroup>
         <h5 class="ofuscado">Saldo atual</h5>
-        <h2 id="saldo"></h2>
+        <h2 id="saldo">{{saldoFormatado}}</h2>
         <h4>
           <button class="btn btn-redondo">
             <i class="fas fa-caret-left"></i>
@@ -25,7 +25,18 @@
 </template>
 
 <script>
-export default {};
+import formatacoesService from '@/services/formatacoes';
+
+export default {
+  props: {
+    saldo: Number
+  },
+  computed: {
+    saldoFormatado() {
+      return formatacoesService.formatarMoeda(this.saldo);
+    }
+  }
+};
 </script>
 
 <style>
