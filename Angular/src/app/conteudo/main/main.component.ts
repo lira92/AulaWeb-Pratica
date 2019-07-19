@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  @Input() despesas: Array<any>;
+  @Output() despesaAdicionada = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
+  onDespesaAdicionada() {
+    this.despesaAdicionada.emit();
+  }
 }

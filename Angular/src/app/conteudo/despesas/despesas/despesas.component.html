@@ -1,5 +1,5 @@
 <section id="despesas">
   <h3>Despesas</h3>
-  <app-tabela-despesas></app-tabela-despesas>
-  <app-form-despesas></app-form-despesas>
+  <app-tabela-despesas [despesas]="despesas"></app-tabela-despesas>
+  <app-form-despesas (despesaAdicionada)="onDespesaAdicionada()"></app-form-despesas>
 </section>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ConfiguracoesService } from 'src/app/services/configuracoes.service';
 import { DespesasService } from 'src/app/services/despesas.service';
 
@@ -9,6 +9,7 @@ import { DespesasService } from 'src/app/services/despesas.service';
 })
 export class FormDespesasComponent implements OnInit {
   despesa: any;
+  @Output() despesaAdicionada = new EventEmitter();
   constructor(private configuracoes: ConfiguracoesService, private despesasService: DespesasService) {
     this.despesa = {
       descricao: '',
@@ -35,6 +36,8 @@ export class FormDespesasComponent implements OnInit {
         categoria: '',
         data: new Date(new Date().setHours(0, 0, 0, 0)).toISOString()
       };
+
+      this.despesaAdicionada.emit();
 
       alert('Despesa salva com sucesso');
     } catch {

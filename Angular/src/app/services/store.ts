@@ -4,7 +4,7 @@ export class Store {
     this.chave = chave;
   }
 
-  listar() {
+  listar(): Promise<Array<any>> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const itens = localStorage.getItem(this.chave);

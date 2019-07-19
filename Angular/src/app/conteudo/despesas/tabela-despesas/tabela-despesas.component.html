@@ -1,2 +1,8 @@
 <table id="tabela-despesas" class="tabela-transacoes">
+  <tbody>
+    <app-grupo-transacao *ngFor="let grupo of datasOrdenadas"
+      [grupo]="grupo"
+      [transacoes]="despesasAgrupadas[grupo]"
+      [obterCategoria]="obterCategoria"></app-grupo-transacao>
+  </tbody>
 </table>

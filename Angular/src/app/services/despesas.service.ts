@@ -10,7 +10,7 @@ export class DespesasService {
     this.store = new Store('despesas');
   }
 
-  listar() {
+  listar(): Promise<Array<any>> {
     return this.store.listar();
   }
 
