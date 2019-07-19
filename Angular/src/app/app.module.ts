@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(ptBr);
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './cabecalho/header/header.component';
@@ -13,6 +16,7 @@ import { FormDespesasComponent } from './conteudo/despesas/form-despesas/form-de
 import { TabelaDespesasComponent } from './conteudo/despesas/tabela-despesas/tabela-despesas.component';
 import { FormReceitasComponent } from './conteudo/receitas/form-receitas/form-receitas.component';
 import { TabelaReceitasComponent } from './conteudo/receitas/tabela-receitas/tabela-receitas.component';
+import { GrupoTransacaoComponent } from './compartilhado/grupo-transacao/grupo-transacao.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +30,19 @@ import { TabelaReceitasComponent } from './conteudo/receitas/tabela-receitas/tab
     FormDespesasComponent,
     TabelaDespesasComponent,
     FormReceitasComponent,
-    TabelaReceitasComponent
+    TabelaReceitasComponent,
+    GrupoTransacaoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

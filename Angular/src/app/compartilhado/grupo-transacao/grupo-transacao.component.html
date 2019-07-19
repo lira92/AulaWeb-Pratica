@@ -1,0 +1,12 @@
+<ng-container>
+  <tr>
+    <td class="coluna-data" colspan="2">{{grupo | date:'dd/MM'}}</td>
+  </tr>
+  <tr *ngFor="let transacao of transacoes">
+    <td class="coluna-descricao-transacao">
+      {{transacao.descricao}}
+      <p class="categoria-label">{{obterCategoria(transacao)}}</p>
+    </td>
+    <td class="coluna-valor-transacao">{{transacao.valor | currency:'BRL'}}</td>
+  </tr>
+</ng-container>
