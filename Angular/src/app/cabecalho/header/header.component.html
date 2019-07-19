@@ -1,4 +1,4 @@
 <header id="cabecalho">
-    <app-cabecalho-principal></app-cabecalho-principal>
-    <app-cabecalho-conteudo></app-cabecalho-conteudo>
+  <app-cabecalho-principal *ngIf="totais" [saldo]="totais.total"></app-cabecalho-principal>
+  <app-cabecalho-conteudo *ngIf="totais" [totais]="totais"></app-cabecalho-conteudo>
 </header>

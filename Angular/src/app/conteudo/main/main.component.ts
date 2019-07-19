@@ -7,7 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   @Input() despesas: Array<any>;
+  @Input() receitas: Array<any>;
   @Output() despesaAdicionada = new EventEmitter();
+  @Output() receitaAdicionada = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -15,5 +17,9 @@ export class MainComponent implements OnInit {
 
   onDespesaAdicionada() {
     this.despesaAdicionada.emit();
+  }
+
+  onReceitaAdicionada() {
+    this.receitaAdicionada.emit();
   }
 }

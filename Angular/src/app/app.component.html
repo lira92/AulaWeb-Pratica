@@ -1,2 +1,8 @@
-<app-header></app-header>
-<app-main [despesas]="despesas" (despesaAdicionada)="listarDespesas()"></app-main>
+<app-header
+  [despesas]="despesas"
+  [receitas]="receitas"></app-header>
+<app-main
+  [despesas]="despesas"
+  (despesaAdicionada)="listarDespesas()"
+  [receitas]="receitas"
+  (receitaAdicionada)="listarReceitas()"></app-main>

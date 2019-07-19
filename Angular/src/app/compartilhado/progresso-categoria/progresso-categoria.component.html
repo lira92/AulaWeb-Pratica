@@ -1,0 +1,6 @@
+<div>
+  <h5>
+    <span class="ofuscado">{{categoria.descricao}} {{total | currency:'BRL'}}</span>
+  </h5>
+  <progress [value]="total" [max]="categoria.previsto"></progress>
+</div>

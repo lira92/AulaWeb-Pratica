@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ResumoTransacoesService } from 'src/app/services/resumo-transacoes.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input() despesas: Array<any>;
+  @Input() receitas: Array<any>;
+  constructor(private resumoTransacoesService: ResumoTransacoesService) {
+  }
 
-  constructor() { }
+  get totais() {
+    if (!this.despesas || !this.receitas) {
+      return null;
+    }
+    return this.resumoTransacoesService.calcularTotais(this.despesas, this.receitas);
+  }
 
   ngOnInit() {
   }
-
 }

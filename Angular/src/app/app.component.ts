@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DespesasService } from './services/despesas.service';
+import { ReceitasService } from './services/receitas.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,17 @@ import { DespesasService } from './services/despesas.service';
 })
 export class AppComponent {
   despesas: Array<any>;
-  constructor(private despesasService: DespesasService) {
+  receitas: Array<any>;
+  constructor(private despesasService: DespesasService, private receitasService: ReceitasService) {
     this.listarDespesas();
+    this.listarReceitas();
   }
 
   async listarDespesas() {
     this.despesas = await this.despesasService.listar();
+  }
+
+  async listarReceitas() {
+    this.receitas = await this.receitasService.listar();
   }
 }

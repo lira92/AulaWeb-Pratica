@@ -1,4 +1,8 @@
 <main id="conteudo">
-  <app-despesas class="coluna-conteudo" [despesas]="despesas" (despesaAdicionada)="onDespesaAdicionada()"></app-despesas>
-  <app-receitas class="coluna-conteudo"></app-receitas>
+  <app-despesas class="coluna-conteudo"
+    [despesas]="despesas"
+    (despesaAdicionada)="onDespesaAdicionada()"></app-despesas>
+  <app-receitas class="coluna-conteudo"
+    [receitas]="receitas"
+    (receitaAdicionada)="onReceitaAdicionada()"></app-receitas>
 </main>

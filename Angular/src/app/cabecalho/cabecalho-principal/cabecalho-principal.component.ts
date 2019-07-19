@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cabecalho-principal',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cabecalho-principal.component.css']
 })
 export class CabecalhoPrincipalComponent implements OnInit {
-
+  @Input() saldo: number;
   constructor() { }
 
   ngOnInit() {

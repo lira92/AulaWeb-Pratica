@@ -1,8 +1,17 @@
 <section id="cabecalho-conteudo">
-    <div id="progresso-principal">
-    </div>
-    <div id="progresso-categoria">
-    </div>
-    <div id="visao-geral">
-    </div>
+  <div *ngIf="totais" id="progresso-principal">
+    <app-progresso-categoria [categoria]="categoriaReceitas" [total]="totais[categoriaReceitas.identificador]">
+    </app-progresso-categoria>
+    <app-progresso-categoria [categoria]="categoriaDespesas" [total]="totais[categoriaDespesas.identificador]">
+    </app-progresso-categoria>
+  </div>
+  <div *ngIf="categorias" id="progresso-categoria">
+    <app-progresso-categoria *ngFor="let categoria of categorias" [categoria]="categoria"
+      [total]="totalPorCategoria(categoria)"></app-progresso-categoria>
+  </div>
+  <div id="visao-geral">
+    <app-item-visao-geral [item]="{ descricao: 'Receitas', valor: totais.receitas }"></app-item-visao-geral>
+    <app-item-visao-geral [item]="{ descricao: 'Despesas', valor: totais.despesas }"></app-item-visao-geral>
+    <app-item-visao-geral [item]="{ descricao: 'Economia', valor: totais.total }"></app-item-visao-geral>
+  </div>
 </section>

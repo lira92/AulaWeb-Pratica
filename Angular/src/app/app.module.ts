@@ -17,6 +17,8 @@ import { TabelaDespesasComponent } from './conteudo/despesas/tabela-despesas/tab
 import { FormReceitasComponent } from './conteudo/receitas/form-receitas/form-receitas.component';
 import { TabelaReceitasComponent } from './conteudo/receitas/tabela-receitas/tabela-receitas.component';
 import { GrupoTransacaoComponent } from './compartilhado/grupo-transacao/grupo-transacao.component';
+import { ItemVisaoGeralComponent } from './compartilhado/item-visao-geral/item-visao-geral.component';
+import { ProgressoCategoriaComponent } from './compartilhado/progresso-categoria/progresso-categoria.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { GrupoTransacaoComponent } from './compartilhado/grupo-transacao/grupo-t
     TabelaDespesasComponent,
     FormReceitasComponent,
     TabelaReceitasComponent,
-    GrupoTransacaoComponent
+    GrupoTransacaoComponent,
+    ItemVisaoGeralComponent,
+    ProgressoCategoriaComponent
   ],
   imports: [
     BrowserModule,

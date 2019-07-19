@@ -10,7 +10,7 @@ export class ReceitasService {
     this.store = new Store('receitas');
   }
 
-  listar() {
+  listar(): Promise<Array<any>> {
     return this.store.listar();
   }
 
