@@ -1,3 +1,8 @@
+/**
+ * Essa classe serve para prover de forma genérica acesso aos dados, ela utiliza uma função de setTimeout
+ * SOMENTE para intuito de estudo, simulando a comunicação com um servidor, portanto se você for utilizar 
+ * localStorage mesmo, não é necessário aguardar resolver uma promise para realizar as operações.
+ */
 export default class storeGenerica {
     constructor(chave) {
         this.chave = chave;
