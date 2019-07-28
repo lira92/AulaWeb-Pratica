@@ -21,9 +21,30 @@ h5 {
 }
 
 #cabecalho {
-    background-color: #3183fe;
+    background-color: #318efe;
     color: #fff;
     padding: 20px;
+    text-transform: uppercase;
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+#cabecalho .btn {
+    color: #fff;
+}
+
+#cabecalho .btn-redondo {
+    background-color: #2178e3;
+}
+
+#cabecalho-conteudo {
+    background-color: #318efe;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
     text-transform: uppercase;
 }
 
@@ -32,7 +53,7 @@ h5 {
     justify-content: space-between;
 }
 
-#cabecalho-principal #container-central {
+#cabecalho-principal .container-central {
     text-align: center;
 }
 
@@ -51,18 +72,34 @@ h5 {
     padding: 4px 9px;
 }
 
-#cabecalho .btn {
-    color: #fff;
+.texto-grande {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-#cabecalho .btn-redondo {
+progress[value] {
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
     background-color: #2178e3;
+	color: #fff;
+    margin: 5px 0 25px;
+    border: 0;
 }
 
-#cabecalho-conteudo {
-    margin-top: 20px;
-    padding: 0 50px;
-    display: flex;
+progress[value]::-webkit-progress-bar {
+	background-color: #2178e3;
+    border-radius: 10px;
+}
+
+progress[value]::-moz-progress-bar {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 #progresso-principal, #progresso-categoria {
@@ -70,7 +107,7 @@ h5 {
     padding: 5px;
 }
 
-#visao-geral {
+#visao-geral-numeros {
     flex: 1;
     padding: 5px;
 }
@@ -83,66 +120,33 @@ h5 {
     opacity: 0.8;
 }
 
-.texto-grande {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-progress[value] {
-    width: 100%;
-    height: 20px;
-    border-radius: 10px;
-    background-color: #2178e3;
-    color: #fff;
-    margin: 5px 0 25px;
-    border: 0;
-}
-
-progress[value]::-webkit-progress-bar {
-    background-color: #2178e3;
-    border-radius: 10px;
-}
-
-progress[value]::-webkit-progress-value {
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-progress[value]::-moz-progress-bar {
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-#conteudo {
+#transacoes-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 10px 50px;
+    padding: 10px 20px;
 }
 
-#conteudo .coluna-conteudo {
+#transacoes-container .coluna-conteudo{
     flex: 1;
-}
-
-#conteudo .coluna-conteudo:first-child {
-    margin-right: 50px;
 }
 
 .tabela-transacoes {
     width: 100%;
 }
 
-.tabela-transacoes td {
+.tabela-transacoes td{
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
     color: #4b4b4d;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .tabela-transacoes td.coluna-descricao-transacao {
     padding-left: 30px;
 }
 
-.tabela-transacoes td.coluna-descricao-transacao p {
+.tabela-transacoes td.coluna-descricao-transacao p{
     font-size: 0.7em;
     opacity: 0.8;
     margin-top: 3px;
@@ -157,6 +161,10 @@ progress[value]::-moz-progress-bar {
     padding-bottom: 0;
 }
 
+#receitas {
+    margin-top: 20px;
+}
+
 #receitas .tabela-transacoes td.coluna-valor-transacao {
     color: #4ab24a;
 }
@@ -165,13 +173,17 @@ progress[value]::-moz-progress-bar {
     color: #d01f1f;
 }
 
+#receitas .form-container, #despesas .form-container {
+    display: none;
+}
+
 .form-container {
     margin-top: 20px;
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
 
-.form-container .titulo-form {
+.form-container .titulo-form{
     font-weight: 600;
     opacity: 0.5;
     margin-bottom: 10px;
@@ -181,8 +193,9 @@ progress[value]::-moz-progress-bar {
     display: flex;
 }
 
-.form .linha-form:not(:last-child) {
-    margin-right: 15px;
+.form-inline-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .linha-form {
@@ -195,11 +208,11 @@ progress[value]::-moz-progress-bar {
     margin-bottom: 2px;
 }
 
-.linha-form label, .linha-form select {
+.linha-form label, .linha-form select{
     font-size: 0.9em;
 }
 
-.linha-form button {
+.form button{
     background-color: #2178e3;
     border: 0;
     color: #fff;
@@ -207,3 +220,70 @@ progress[value]::-moz-progress-bar {
     border-radius: 3px;
 }
 
+.botao-flutuante {
+    border: 0;
+    background-color: #2178e3;
+    border-radius: 50%;
+    padding: 10px 14px;
+    font-size: 28px;
+    color: #fff;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.titulo-centralizado {
+    text-align: center;
+}
+
+@media only screen and (min-width: 576px) {
+}
+
+@media only screen and (min-width: 768px) {
+    #cabecalho {
+        position: relative;
+        z-index: 1;
+    }
+    
+    #cabecalho-conteudo {
+        flex-direction: row;
+        padding: 0 50px;
+    }
+    
+    #transacoes-container {
+        flex-direction: row;
+        padding: 10px 50px;
+    }
+    
+    .form-inline-container {
+        flex-direction: row;
+    }
+    
+    #receitas .form-container, #despesas .form-container {
+        display: block;
+    }
+    
+    .form .linha-form:not(:last-child) {
+        margin-right:15px;
+    }
+    
+    .botao-flutuante {
+        display: none;
+    }
+    
+    #conteudo .coluna-conteudo:first-child{
+        margin-right: 50px;
+    }
+    
+    #receitas {
+        margin-top: 0;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+
+}
+
+@media only screen and (min-width: 1200px) {
+
+}

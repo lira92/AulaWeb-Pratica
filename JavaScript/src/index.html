@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <meta name="view-port" content="width=device-with, initial-scale=1">
-        <title>Meu orçamento pessoal</title>
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/font-montserrat.css">
-        <link rel="stylesheet" href="css/fontawesome.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <header id="cabecalho">
-            <section id="cabecalho-principal">
-                <div id="container-esquerdo">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div id="container-central">
-                    <hgroup>
-                        <h5 class="ofuscado">Saldo atual</h5>
-                        <h2 id="saldo"></h2>
-                        <h4>
-                            <button class="btn btn-redondo">
-                                <i class="fas fa-caret-left"></i>
-                            </button>
-                            Maio
-                            <button class="btn btn-redondo">
-                                <i class="fas fa-caret-right"></i>
-                            </button>
-                        </h4>
-                    </hgroup>
-                </div>
-                <div id="container-direito">
-                    <i class="fas fa-cog"></i>
-                </div>
-            </section>
-            <section id="cabecalho-conteudo">
-                <div id="progresso-principal">
-                </div>
-                <div id="progresso-categoria">
-                </div>
-                <div id="visao-geral">
-                </div>
-            </section>
+
+<head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Meu orçamento pessoal</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/font-montserrat.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header id="cabecalho">
+        <section id="cabecalho-principal">
+            <div id="container-esquerdo">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div id="container-central">
+                <h5 class="ofuscado titulo-centralizado">Saldo atual</h5>
+                <h2 id="saldo" class="titulo-centralizado"></h2>
+                <h4 class="titulo-centralizado">
+                    <button class="btn btn-redondo">
+                        <i class="fas fa-caret-left"></i>
+                    </button>
+                    Maio
+                    <button class="btn btn-redondo">
+                        <i class="fas fa-caret-right"></i>
+                    </button>
+                </h4>
+            </div>
+            <div id="container-direito">
+                <i class="fas fa-cog"></i>
+            </div>
+        </section>
+    </header>
+    <main id="conteudo">
+        <header id="cabecalho-conteudo">
+            <div id="progresso-principal">
+            </div>
+            <div id="progresso-categoria">
+            </div>
+            <div id="visao-geral">
+            </div>
         </header>
-        <main id="conteudo">
+        <div id="transacoes-container">
             <section class="coluna-conteudo" id="despesas">
                 <h3>Despesas</h3>
-                <table id="tabela-despesas" class="tabela-transacoes">                   
+                <table id="tabela-despesas" class="tabela-transacoes">
                 </table>
                 <section class="form-container" id="form-despesa-container">
                     <h4 class="titulo-form">Adicionar despesa</h4>
@@ -92,7 +93,12 @@
                     </form>
                 </section>
             </section>
-        </main>
-        <script src="main.js"></script>
-    </body>
+        </div>
+    </main>
+    <button class="botao-flutuante">
+        <i class="fas fa-plus"></i>
+    </button>
+    <script src="main.js"></script>
+</body>
+
 </html>
