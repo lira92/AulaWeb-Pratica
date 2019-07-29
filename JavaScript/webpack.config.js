@@ -1,4 +1,5 @@
 const CopyPlugin = require('copy-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -13,6 +14,7 @@ module.exports = {
             { from: 'node_modules/@fortawesome/fontawesome-free/css/all.css', to: 'css/fontawesome.css' },
             { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: 'webfonts' },
         ]),
+        new WorkboxPlugin.GenerateSW()
     ],
     devServer: {
         disableHostCheck: true
