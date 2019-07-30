@@ -82,13 +82,13 @@ progress[value] {
     height: 20px;
     border-radius: 10px;
     background-color: #2178e3;
-	color: #fff;
+    color: #fff;
     margin: 5px 0 25px;
     border: 0;
 }
 
 progress[value]::-webkit-progress-bar {
-	background-color: #2178e3;
+    background-color: #2178e3;
     border-radius: 10px;
 }
 
@@ -102,7 +102,8 @@ progress[value]::-webkit-progress-value {
     border-radius: 10px;
 }
 
-#progresso-principal, #progresso-categoria {
+#progresso-principal,
+#progresso-categoria {
     flex: 2;
     padding: 5px;
 }
@@ -127,7 +128,7 @@ progress[value]::-webkit-progress-value {
     padding: 10px 20px;
 }
 
-#transacoes-container .coluna-conteudo{
+#transacoes-container .coluna-conteudo {
     flex: 1;
 }
 
@@ -135,7 +136,7 @@ progress[value]::-webkit-progress-value {
     width: 100%;
 }
 
-.tabela-transacoes td{
+.tabela-transacoes td {
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
     color: #4b4b4d;
@@ -146,7 +147,7 @@ progress[value]::-webkit-progress-value {
     padding-left: 30px;
 }
 
-.tabela-transacoes td.coluna-descricao-transacao p{
+.tabela-transacoes td.coluna-descricao-transacao p {
     font-size: 0.7em;
     opacity: 0.8;
     margin-top: 3px;
@@ -173,7 +174,8 @@ progress[value]::-webkit-progress-value {
     color: #d01f1f;
 }
 
-#receitas .form-container, #despesas .form-container {
+#receitas .form-container,
+#despesas .form-container {
     display: none;
 }
 
@@ -183,7 +185,7 @@ progress[value]::-webkit-progress-value {
     border-bottom: 1px solid #ccc;
 }
 
-.form-container .titulo-form{
+.form-container .titulo-form {
     font-weight: 600;
     opacity: 0.5;
     margin-bottom: 10px;
@@ -208,11 +210,12 @@ progress[value]::-webkit-progress-value {
     margin-bottom: 2px;
 }
 
-.linha-form label, .linha-form select{
+.linha-form label,
+.linha-form select {
     font-size: 0.9em;
 }
 
-.form button{
+.form button {
     background-color: #2178e3;
     border: 0;
     color: #fff;
@@ -236,54 +239,50 @@ progress[value]::-webkit-progress-value {
     text-align: center;
 }
 
-@media only screen and (min-width: 576px) {
+.botao-branco {
+    background-color: #fff;
+    border: 0;
+    color: #2178e3;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
+
+@media only screen and (min-width: 576px) {}
 
 @media only screen and (min-width: 768px) {
     #cabecalho {
         position: relative;
         z-index: 1;
     }
-    
     #cabecalho-conteudo {
         flex-direction: row;
         padding: 0 50px;
     }
-    
     #transacoes-container {
         flex-direction: row;
         padding: 10px 50px;
     }
-    
     .form-inline-container {
         flex-direction: row;
     }
-    
-    #receitas .form-container, #despesas .form-container {
+    #receitas .form-container,
+    #despesas .form-container {
         display: block;
     }
-    
     .form .linha-form:not(:last-child) {
-        margin-right:15px;
+        margin-right: 15px;
     }
-    
     .botao-flutuante {
         display: none;
     }
-    
-    #conteudo .coluna-conteudo:first-child{
+    #conteudo .coluna-conteudo:first-child {
         margin-right: 50px;
     }
-    
     #receitas {
         margin-top: 0;
     }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {}
 
-}
-
-@media only screen and (min-width: 1200px) {
-
-}
+@media only screen and (min-width: 1200px) {}

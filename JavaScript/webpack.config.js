@@ -13,10 +13,14 @@ module.exports = {
             { from: 'src/fonts', to: 'fonts' },
             { from: 'node_modules/@fortawesome/fontawesome-free/css/all.css', to: 'css/fontawesome.css' },
             { from: 'node_modules/@fortawesome/fontawesome-free/webfonts', to: 'webfonts' },
+            { from: 'node_modules/xlnt/dist/xlnt.wasm', to: 'xlnt.wasm' },
         ]),
         new WorkboxPlugin.GenerateSW()
     ],
     devServer: {
         disableHostCheck: true
+    },
+    node: {
+        fs: "empty"
     }
 }
