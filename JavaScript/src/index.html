@@ -2,104 +2,129 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Meu orçamento pessoal</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/font-montserrat.css">
-    <link rel="stylesheet" href="css/fontawesome.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="/manifest.json">
+  <meta charset="utf-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Meu orçamento pessoal</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/font-montserrat.css">
+  <link rel="stylesheet" href="css/fontawesome.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
-    <header id="cabecalho">
-        <section id="cabecalho-principal">
-            <div id="container-esquerdo">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div id="container-central">
-                <h5 class="ofuscado titulo-centralizado">Saldo atual</h5>
-                <h2 id="saldo" class="titulo-centralizado"></h2>
-                <h4 class="titulo-centralizado">
-                    <button class="btn btn-redondo">
-                        <i class="fas fa-caret-left"></i>
-                    </button>
-                    Maio
-                    <button class="btn btn-redondo">
-                        <i class="fas fa-caret-right"></i>
-                    </button>
-                </h4>
-            </div>
-            <div id="container-direito">
-                <i class="fas fa-cog"></i>
-            </div>
-        </section>
+  <header id="cabecalho">
+    <section id="cabecalho-principal">
+      <div class="container-esquerdo">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="container-central">
+        <h5 class="ofuscado titulo-centralizado">Saldo atual</h5>
+        <h2 id="saldo" class="titulo-centralizado"></h2>
+        <h4 class="titulo-centralizado">
+          <button class="btn btn-redondo">
+            <i class="fas fa-caret-left"></i>
+          </button>
+          Maio
+          <button class="btn btn-redondo">
+            <i class="fas fa-caret-right"></i>
+          </button>
+        </h4>
+      </div>
+      <div class="container-direito">
+        <a href="#" id="logout" style="display: none;">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </div>
+    </section>
+  </header>
+  <main id="conteudo">
+    <header id="cabecalho-conteudo">
+      <div id="progresso-principal">
+      </div>
+      <div id="progresso-categoria">
+      </div>
+      <div id="visao-geral">
+      </div>
     </header>
-    <main id="conteudo">
-        <header id="cabecalho-conteudo">
-            <div id="progresso-principal">
+    <div id="transacoes-container">
+      <section class="coluna-conteudo" id="despesas">
+        <h3>Despesas</h3>
+        <table id="tabela-despesas" class="tabela-transacoes">
+        </table>
+        <section class="form-container" id="form-despesa-container">
+          <h4 class="titulo-form">Adicionar despesa</h4>
+          <form id="form-adicionar-despesa" class="form inline" name="form-despesa" action="#">
+            <div class="linha-form">
+              <label for="descricao">Descrição</label>
+              <input type="text" id="descricao" name="descricao" required>
             </div>
-            <div id="progresso-categoria">
+            <div class="linha-form">
+              <label for="valor">Valor</label>
+              <input type="number" name="valor" id="valor" step="0.01" required>
             </div>
-            <div id="visao-geral">
+            <div class="linha-form">
+              <label for="categoria">Categoria</label>
+              <select name="categoria" id="categoria" required>
+                <option value="">Selecione uma categoria</option>
+              </select>
             </div>
-        </header>
-        <div id="transacoes-container">
-            <section class="coluna-conteudo" id="despesas">
-                <h3>Despesas</h3>
-                <table id="tabela-despesas" class="tabela-transacoes">
-                </table>
-                <section class="form-container" id="form-despesa-container">
-                    <h4 class="titulo-form">Adicionar despesa</h4>
-                    <form id="form-adicionar-despesa" class="form" name="form-despesa" action="#">
-                        <div class="linha-form">
-                            <label for="descricao">Descrição</label>
-                            <input type="text" id="descricao" name="descricao" required>
-                        </div>
-                        <div class="linha-form">
-                            <label for="valor">Valor</label>
-                            <input type="number" name="valor" id="valor" step="0.01" required>
-                        </div>
-                        <div class="linha-form">
-                            <label for="categoria">Categoria</label>
-                            <select name="categoria" id="categoria" required>
-                                <option value="">Selecione uma categoria</option>
-                            </select>
-                        </div>
-                        <div class="linha-form">
-                            <button class="btn" type="submit">Adicionar</button>
-                        </div>
-                    </form>
-                </section>
-            </section>
-            <section class="coluna-conteudo" id="receitas">
-                <h3>Receitas</h3>
-                <table id="tabela-receitas" class="tabela-transacoes">
-                </table>
-                <section class="form-container" id="form-receita-container">
-                    <h4 class="titulo-form">Adicionar receita</h4>
-                    <form id="form-adicionar-receita" class="form" name="form-receita" action="#">
-                        <div class="linha-form">
-                            <label for="descricao">Descrição</label>
-                            <input type="text" id="descricao" name="descricao" required>
-                        </div>
-                        <div class="linha-form">
-                            <label for="valor">Valor</label>
-                            <input type="number" name="valor" id="valor" step="0.01" required>
-                        </div>
-                        <div class="linha-form">
-                            <button class="btn" type="submit">Adicionar</button>
-                        </div>
-                    </form>
-                </section>
-            </section>
-        </div>
-    </main>
-    <button class="botao-flutuante">
-        <i class="fas fa-plus"></i>
-    </button>
-    <script src="main.js"></script>
+            <div class="linha-form">
+              <button class="btn" type="submit">Adicionar</button>
+            </div>
+          </form>
+        </section>
+      </section>
+      <section class="coluna-conteudo" id="receitas">
+        <h3>Receitas</h3>
+        <table id="tabela-receitas" class="tabela-transacoes">
+        </table>
+        <section class="form-container" id="form-receita-container">
+          <h4 class="titulo-form">Adicionar receita</h4>
+          <form id="form-adicionar-receita" class="form inline" name="form-receita" action="#">
+            <div class="linha-form">
+              <label for="descricao">Descrição</label>
+              <input type="text" id="descricao" name="descricao" required>
+            </div>
+            <div class="linha-form">
+              <label for="valor">Valor</label>
+              <input type="number" name="valor" id="valor" step="0.01" required>
+            </div>
+            <div class="linha-form">
+              <button class="btn" type="submit">Adicionar</button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </div>
+  </main>
+  <button class="botao-flutuante">
+    <i class="fas fa-plus"></i>
+  </button>
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Autenticação</h2>
+      </div>
+      <div class="modal-body">
+        <form id="form-login" class="form" name="form-login" action="#">
+          <div class="linha-form">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="linha-form">
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" required>
+          </div>
+          <div class="form-inline-container">
+            <button name="cadastrar" class="btn" type="button">Cadastro</button>
+            <button name="login" class="btn" type="button">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
 </body>
 
 </html>
