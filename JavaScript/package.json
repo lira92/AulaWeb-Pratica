@@ -6,6 +6,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
     "accounting": "^0.4.1",
+    "firebase": "^6.3.5",
     "xlnt": "^1.1.0"
   },
   "devDependencies": {
