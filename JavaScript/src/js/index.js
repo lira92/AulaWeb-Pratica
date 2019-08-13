@@ -32,7 +32,7 @@ import adicionarHandlersModal from './modal';
       bloquearModal: true
     }
   );
-  
+
 
   const obterElementos = () => {
     const formReceita = document.getElementById('form-adicionar-receita');
@@ -83,15 +83,20 @@ import adicionarHandlersModal from './modal';
   const receitasStore = new storeGenerica('receitas');
 
   const elementos = obterElementos();
+  let usuarioLogado = null;
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      usuarioLogado = user;
       elementos.cabecalho.acoes.logout.style.display = 'block';
       modal.fecharModal();
       elementos.login.form.reset();
+      carregarDadosDoUsuario();
     } else {
+      usuarioLogado = null;
       elementos.cabecalho.acoes.logout.style.display = 'none';
       modal.abrirModal();
+      limparDadosDoUsuario();
     }
   });
 
@@ -335,24 +340,35 @@ import adicionarHandlersModal from './modal';
   }
 
   let receitas = [];
-  const receitasPromise = receitasStore.listar();
-  receitasPromise.then((receitasArmazenadas) => {
-    receitas = receitasArmazenadas;
-    renderizarReceitas();
-  })
-
   let despesas = [];
-  const despesasPromise = despesasStore.listar();
-  despesasPromise.then((despesasArmazenadas) => {
-    despesas = despesasArmazenadas;
-    renderizarDespesas();
-  })
+  const carregarDadosDoUsuario = async () => {
+    const receitasPromise = receitasStore.listar(usuarioLogado.uid);
+    receitasPromise.then((receitasArmazenadas) => {
+      receitas = receitasArmazenadas;
+      renderizarReceitas();
+    })
 
-  await Promise.all([
-    receitasPromise,
-    despesasPromise
-  ]);
-  renderizarCabecalho();
+    const despesasPromise = despesasStore.listar(usuarioLogado.uid);
+    despesasPromise.then((despesasArmazenadas) => {
+      despesas = despesasArmazenadas;
+      renderizarDespesas();
+    })
+
+    await Promise.all([
+      receitasPromise,
+      despesasPromise
+    ]);
+    renderizarCabecalho();
+  }
+
+  const limparDadosDoUsuario = () => {
+    elementos.receita.tabela.innerHTML = '';
+    elementos.despesa.tabela.innerHTML = '';
+    elementos.cabecalho.principal.innerHTML = '';
+    elementos.cabecalho.categorias.innerHTML = '';
+    elementos.cabecalho.visalGeral.innerHTML = '';
+  }
+
   carregarSelectDeCategorias();
 
   elementos.receita.form.onsubmit = async (event) => {
@@ -369,7 +385,7 @@ import adicionarHandlersModal from './modal';
 
     receitas.push(receita);
     try {
-      await receitasStore.salvar(receitas);
+      await receitasStore.adicionar(receita, usuarioLogado.uid);
       elementos.receita.form.reset();
       renderizarReceitas();
       renderizarCabecalho();
@@ -393,7 +409,7 @@ import adicionarHandlersModal from './modal';
 
     despesas.push(despesa);
     try {
-      await despesasStore.salvar(despesas);
+      await despesasStore.adicionar(despesa, usuarioLogado.uid);
       elementos.despesa.form.reset();
       renderizarDespesas();
       renderizarCabecalho();
