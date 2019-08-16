@@ -131,6 +131,12 @@ progress[value]::-webkit-progress-value {
 
 #visao-geral .visao-geral-container {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#visao-geral .visao-geral-container *:not(:last-child) {
+    margin-bottom: 10px;
 }
 
 .ofuscado {

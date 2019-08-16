@@ -324,6 +324,20 @@ import adicionarHandlersModal from './modal';
     container.append(botaoExportar);
 
     elementos.cabecalho.visalGeral.append(container);
+
+    const botaoSincronizar = document.createElement('button');
+    botaoSincronizar.innerHTML = '<i class="fas fa-sync"></i> Sincronizar';
+    botaoSincronizar.classList.add('btn');
+    botaoSincronizar.classList.add('botao-branco');
+    botaoSincronizar.onclick = () => {
+      window.open(
+        `https://us-central1-orcamento-pessoal-85a66.cloudfunctions.net/authgoogleapi?uid=${usuarioLogado.uid}`,
+        '_blank'
+      );
+    }
+    container.append(botaoSincronizar);
+
+    elementos.cabecalho.visalGeral.append(container);
   }
 
   const renderizarCabecalho = () => {
