@@ -8,13 +8,13 @@ import adicionarHandlersModal from './modal';
 
 (async () => {
   const firebaseConfig = {
-    apiKey: "AIzaSyCNfQ3EAgokc-_9m9xPLV7BoSpKyxkzY0Y",
-    authDomain: "orcamento-pessoal-85a66.firebaseapp.com",
-    databaseURL: "https://orcamento-pessoal-85a66.firebaseio.com",
-    projectId: "orcamento-pessoal-85a66",
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
     storageBucket: "",
-    messagingSenderId: "317049111773",
-    appId: "1:317049111773:web:ca0c0ebfc4883d22"
+    messagingSenderId: "",
+    appId: ""
   };
 
   if ('serviceWorker' in navigator) {
